@@ -3,7 +3,10 @@ import * as React from 'react';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
+import FileLectureScreen from '../screens/FileLectureScreen';
+import ListScreen from '../screens/ListScreen';
+import MetricsScreen from '../screens/MetricsScreen';
+import ShowCodeScreen from '../screens/ShowCodeScreen';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -20,16 +23,40 @@ export default function BottomTabNavigator({ navigation, route }) {
         name="Home"
         component={HomeScreen}
         options={{
-          title: 'Get Started',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
+          title: 'Home',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="home" />,
         }}
       />
       <BottomTab.Screen
-        name="Links"
-        component={LinksScreen}
+        name="File"
+        component={FileLectureScreen}
         options={{
-          title: 'Resources',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
+          title: 'Archivo',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="insert-drive-file" />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Code"
+        component={ShowCodeScreen}
+        options={{
+          title: 'Código',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="code" />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Metrics"
+        component={MetricsScreen}
+        options={{
+          title: 'Métricas',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="assessment" />,
+        }}
+      />
+      <BottomTab.Screen
+        name="List"
+        component={ListScreen}
+        options={{
+          title: 'Saved',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="list" />,
         }}
       />
     </BottomTab.Navigator>
@@ -41,8 +68,14 @@ function getHeaderTitle(route) {
 
   switch (routeName) {
     case 'Home':
-      return 'How to get started';
-    case 'Links':
-      return 'Links to learn more';
+      return 'Métricas de software';
+    case 'File':
+      return 'Cargar un archivo';
+    case 'Code':
+      return 'Código';
+    case 'Metrics':
+      return 'Métricas del código';
+    case 'List':
+      return 'Métricas guardadas';
   }
 }
